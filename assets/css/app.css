@@ -1,0 +1,275 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@charset "UTF-8";
+
+* {
+	outline: 					none;
+
+	-webkit-box-sizing: 		border-box;
+	-moz-box-sizing: 			border-box;
+	box-sizing: 				border-box;
+}
+
+html {
+	height: 					100%;
+}
+body {
+	font-family:  				"Open Sans", sans-serif;
+	background: 				#9dbf68 url(../images/body-bg.jpg) no-repeat;
+	background-size: 			cover;
+	margin: 					0;
+}
+
+a {
+	color: 						inherit;
+	text-decoration:  			none;
+}
+
+/* INLINE MENUS */
+.inline_menu {
+	-webkit-animation-duration: .2s;
+	animation-duration: 		.2s;
+	display: 					none;
+	position: 	 				absolute;
+	box-shadow: 				-5px 5px 30px rgba(0, 0, 0, 0.1);
+	top: 						100%;
+	right: 						0;
+	cursor: 					pointer;
+	font-family:  				'Open Sans', sans-serif;
+	background: 				inherit;
+	font-size: 					18px;
+}
+.inline_menu > a {
+	min-width: 					200px;
+	transition: 				.15s background ease;
+	text-align: 				left;
+	padding: 					0px 20px;
+	display:  					block;
+}
+.inline_menu > a:hover {
+	background:					#F1FFD7;
+	color:						#A5C466;
+}
+.inline_menu > a > i {
+	margin-left: 				-10px;
+}
+
+/* OPEN MENU ON PARENT HOVER */
+i:hover > .inline_menu {
+	display: 					block;
+}
+
+#wrapper {
+	margin: 					0 auto;
+	max-width: 					1200px;
+	width: 						90%;
+}
+#wrapper.login {
+	padding-top: 				200px;
+}
+
+#wrapper > #login {
+	overflow: 					hidden;
+	width: 						500px;
+	margin: 					0 auto;
+	background: 				#F1FFD7;
+	color: 						#A5C466;
+	border-radius: 				5px;
+
+}
+#wrapper > #login > #header {
+	padding: 					10px 15PX;
+	display: 	 				block;
+	font-size: 					22px;
+}
+#wrapper > #login > #header.error {
+	background:  				tomato;
+	color: 						rgba( 255, 255, 255, 0.7 );
+}
+#wrapper > #login > #header > i {
+	margin-right: 				5px;
+}
+#wrapper > #login > #connect {
+
+	border-top: 				1px solid currentColor;
+	padding: 					10px;
+
+}
+#wrapper > #login > #connect > form {
+	display: 					flex;
+
+}
+#wrapper > #login > #connect > form > input {
+	flex: 						1 0 0;
+	margin: 					5px;
+	padding: 					5px 10px;
+	color: 						inherit;
+	font-size: 					inherit;
+	background: 				none;
+	font-family:  				inherit;
+	border:						1px solid currentColor;
+	border-radius: 				3px;
+	transition: 				.2s background ease,
+								.2s color ease;
+}
+#wrapper > #login > #connect > form > input[type="submit"] {
+	max-width: 					70px;
+	cursor: 					pointer;
+	background: 				#A5C466;
+	color: 						#F1FFD7;
+}
+#wrapper > #login > #connect > form > input[type="submit"]:hover {
+	color: 						#A5C466;
+	background: 				#F1FFD7;
+}
+
+
+#wrapper > #menu,
+#wrapper > #content {
+	box-shadow: 				0 0 50px rgba(0, 0, 0, 0.1);
+	color: 						#A5C466;
+	font-size: 					18px;
+	display: 					flex;
+}
+
+/*
+	DASHBOARD
+*/
+
+#wrapper > #menu {
+	background: 				#F1FFD7;
+	z-index: 					1;
+	position:  					fixed;
+	padding: 					0;
+	padding-left: 				10px;
+	top: 						0;
+	left: 						0;
+	width: 						100%;
+	line-height: 				40px;
+	white-space: 				nowrap;
+}
+
+#wrapper > #menu > #logo {
+	transition: 				.2s color ease;
+	color: 						transparent;
+	flex-basis: 				30px;
+}
+#wrapper > #menu > #logo > i {
+	color:  					#A5C466;
+}
+
+#wrapper > #menu > #welcome {
+	flex: 						1 0 0;
+	text-align: 				right;
+}
+#wrapper > #menu > #welcome > i {
+	transition: 				.15s all ease;
+	padding: 					0 15px;
+	font-size: 					21px;
+	cursor: 					pointer;
+	line-height: 				inherit;
+}
+#wrapper > #menu > #welcome > i:hover {
+	color: 						#F1FFD7;
+	background:					#A5C466;
+}
+
+/* CONTENT */
+
+#wrapper > #content {
+	margin-top: 				70px;
+	border-radius: 				5px;
+	justify-content: 			space-between;
+	flex-wrap: 					wrap;
+	-webkit-animation-duration:	.5s;
+	animation-duration:			.5s;
+	background: 				#F1FFD7;
+}
+
+/* courses buttons */
+#content .courses {
+	display: 					block;
+	transition: 				.2s opacity ease,
+								.2s transform ease;
+	opacity:  					.7;
+	min-width:					80px;
+	height: 					80px;
+	margin: 					10px 15px;
+	border-radius: 				5px;
+	box-shadow: 				0 0 10px rgba(0, 0, 0, 0.2);
+	background: 				transparent url(../images/languages.png) no-repeat;
+}
+#content .courses:hover {
+	opacity:  					.9;
+	transform: 					scale( 1.07 );
+}
+#content .courses.html {
+	background-position: 		0 0;
+}
+#content .courses.css {
+	background-position: 		0 -85px;
+}
+#content .courses.php {
+	background-position: 		0 -170px;
+}
+#content .courses.mysql {
+	background-position: 		0 -255px;
+}
+#content .courses.js {
+	background-position: 		0 -340px;
+}
+
+
+/* BREADCRUMBS */
+#lessons {
+	width: 						100%;
+}
+#lessons > div {
+	padding: 					10px 20px;
+}
+#lessons > #breadcrumbs {
+	line-height: 				40px;
+	font-size: 					24px;
+	border-top-right-radius: 	5px;
+	border-top-left-radius: 	5px;
+	background: 				#f4fde4;
+	border-bottom: 				2px solid #dcf5ad;
+}
+#lessons > #breadcrumbs i.margin {
+	margin-right: 				5px;
+}
+#lessons > #breadcrumbs > i.fa-angle-double-right {
+	margin: 					0 10px;
+	opacity:  					.5
+}
+#lessons > #breadcrumbs > i:last-of-type {
+	display:  					none;
+}
+#lessons > #lessons_content {
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 	5px;
+}
+
+/* 	SETTINGS  */
+#account {
+	padding: 					10px 20px;
+}
+
+/* 	FOOTER 	*/
+#wrapper > #footer {
+	text-align: 				center;
+	font-size: 					14px;
+	margin-top: 				10px;
+	color: 						#F1FFD7;
+	-webkit-animation-delay: 	.5s;
+	animation-delay: 			.5s;
+}
+#wrapper > #footer > i {
+	margin: 					0 10px;
+	font-size: 					16px;
+}
+
+@media only screen and ( min-width: 486px ) {
+	#wrapper > #menu > #logo {
+		color: 				 	inherit;
+	}
+}
