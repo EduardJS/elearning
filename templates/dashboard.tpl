@@ -10,7 +10,7 @@
 		</i>
 	</div>
 </div>
-<div id="content" class="animated fadeInDown">
+<div id="content" class="animated fadeInDown <?php if ( count($uri->segments) == 1 && $uri->segments[0] == 'courses' ) echo 'choose'; ?>">
 	<?php
 
 		if ( App::$nodes[ $uri->segments[ 0 ] ] )

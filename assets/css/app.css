@@ -17,6 +17,8 @@ body {
 	background: 				#9dbf68 url(../images/body-bg.jpg) no-repeat;
 	background-size: 			cover;
 	margin: 					0;
+	overflow-y: 				hidden;
+	min-width: 					280px;
 }
 
 a {
@@ -175,18 +177,22 @@ i:hover > .inline_menu {
 #wrapper > #content {
 	margin-top: 				70px;
 	border-radius: 				5px;
+	transition: 				.4s border-radius ease;
 	justify-content: 			space-between;
-	flex-wrap: 					wrap;
 	-webkit-animation-duration:	.5s;
 	animation-duration:			.5s;
 	background: 				#F1FFD7;
+}
+#wrapper > #content.choose {
+	flex-wrap: 					wrap;
 }
 
 /* courses buttons */
 #content .courses {
 	display: 					block;
 	transition: 				.2s opacity ease,
-								.2s transform ease;
+								.2s transform ease,
+								.4s border-radius ease;
 	opacity:  					.7;
 	min-width:					80px;
 	height: 					80px;
@@ -313,9 +319,16 @@ i:hover > .inline_menu {
 	font-size: 					16px;
 }
 
-@media only screen and ( min-width: 550px ) {
+@media only screen and ( min-width: 650px ) {
 	#wrapper > #menu > #logo {
 		color: 				 		inherit;
+	}
+
+	#wrapper > #content.choose {
+		border-radius: 				80px;
+	}
+	#wrapper > #content.choose .courses {
+		border-radius: 				50%;
 	}
 
 	#lessons > #content,

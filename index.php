@@ -26,15 +26,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
 
 		<!-- app title -->
 		<title><?php echo DB::$config['website_title']; ?></title>
 
 		<!-- styling file -->
-		<link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="/assets/css/animate.css">
-		<link rel="stylesheet" type="text/css" href="/assets/css/app.css">
+		<link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="/assets/css/animate.css" />
+		<link rel="stylesheet" type="text/css" href="/assets/css/app.css" />
 
 	</head>
 	<body>
