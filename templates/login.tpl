@@ -1,4 +1,4 @@
-<div id="login">
+<div id="login" class="animated fadeInDown">
 	<div id="header" class="<?php echo ( $user->auth_error ) ? 'error' : ''; ?>">
 		<?php
 			if ( $user->auth_error )

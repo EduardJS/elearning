@@ -63,18 +63,16 @@ i:hover > .inline_menu {
 	max-width: 					1200px;
 	width: 						90%;
 }
-#wrapper.login {
-	padding-top: 				200px;
-}
 
 #wrapper > #login {
 	overflow: 					hidden;
 	width: 						500px;
-	margin: 					0 auto;
+	margin: 					200px auto 0;
 	background: 				#F1FFD7;
 	color: 						#A5C466;
 	border-radius: 				5px;
-
+	-webkit-animation-duration:	.8s;
+	animation-duration:			.8s;
 }
 #wrapper > #login > #header {
 	padding: 					10px 15PX;
@@ -82,7 +80,7 @@ i:hover > .inline_menu {
 	font-size: 					22px;
 }
 #wrapper > #login > #header.error {
-	background:  				tomato;
+	background:  				#FF6347;
 	color: 						rgba( 255, 255, 255, 0.7 );
 }
 #wrapper > #login > #header > i {
@@ -90,7 +88,7 @@ i:hover > .inline_menu {
 }
 #wrapper > #login > #connect {
 
-	border-top: 				1px solid currentColor;
+	border-top: 				2px solid #DCF4AD;
 	padding: 					10px;
 
 }
@@ -227,8 +225,11 @@ i:hover > .inline_menu {
 	padding: 					10px 20px;
 }
 #lessons > #breadcrumbs {
-	line-height: 				40px;
-	font-size: 					24px;
+	transition: 				.2s all ease;
+	white-space: 				nowrap;
+	overflow:  					hidden;
+	line-height: 				20px;
+	font-size: 					16px;
 	border-top-right-radius: 	5px;
 	border-top-left-radius: 	5px;
 	background: 				#f4fde4;
@@ -244,10 +245,57 @@ i:hover > .inline_menu {
 #lessons > #breadcrumbs > i:last-of-type {
 	display:  					none;
 }
-#lessons > #lessons_content {
+
+#lessons > #content {
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 	5px;
+	display: 					flex;
+	padding: 					0;
 }
+#lessons > #content > #available {
+	background: 				#A5C466;
+	display:  					none;
+	width: 						-moz-min-content;
+	width: 						-webkit-min-content;
+	width: 						min-content;
+	white-space: 				nowrap;
+	border-bottom-left-radius: 	5px;
+}
+#lessons > #content > #available > a {
+	transition: 				.2s color ease,
+								.2s background ease;
+	padding: 					12px 20px;
+	font-size: 					.8em;
+	color:						#F1FFD7;
+	background:					#A5C466;
+}
+#lessons > #content > #available > a:last-child {
+	border-bottom-left-radius: 	inherit
+}
+#lessons > #content > #available > a:first-child {
+	border-bottom-left-radius: 	0;
+}
+#lessons > #content > #available > a:hover {
+	background:					rgba(255,255,255,.2);
+}
+#lessons > #content > #available > a.current {
+	color:						#A5C466;
+	background:					#F1FFD7;
+}
+#lessons > #content > #container {
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 	5px;
+	flex: 						1 0 0;
+	padding: 					10px 20px;
+}
+#lessons > #content > #container.error {
+	color: 						#FFE6E6;
+	background:  				#FF6347;
+}
+#lessons > #content > #container > h2 {
+	margin: 					0;
+}
+
 
 /* 	SETTINGS  */
 #account {
@@ -268,8 +316,21 @@ i:hover > .inline_menu {
 	font-size: 					16px;
 }
 
-@media only screen and ( min-width: 486px ) {
+@media only screen and ( min-width: 550px ) {
 	#wrapper > #menu > #logo {
-		color: 				 	inherit;
+		color: 				 		inherit;
+	}
+
+	#lessons > #content,
+	#lessons > #content > #container {
+		border-bottom-left-radius: 	0;
+	}
+	#lessons > #breadcrumbs {
+		line-height:  				40px;
+		font-size: 					24px;
+	}
+	#lessons > #content > #available {
+		display:  					flex;
+		flex-direction: 			column;
 	}
 }

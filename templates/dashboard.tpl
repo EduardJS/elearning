@@ -19,8 +19,5 @@
 			require ROOT_PATH . '/templates/' . _TEMPLATE . '.tpl';
 		} else
 			DB::reload( '/courses' );
-
-
 	?>
 </div>
-<div id="footer" class="animated fadeInDown">eLearning App <i class="fa fa-graduation-cap"></i> Class of 2014</div>

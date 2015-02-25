@@ -1,5 +1,5 @@
 <?php
-
+	setlocale(LC_ALL, 'en_US.UTF8');
 	error_reporting( E_ALL & ~E_NOTICE );
 
 	// cale folder aplicatie
@@ -40,6 +40,7 @@
 	<body>
 		<div id="wrapper" class="<?php echo ( $user->id ) ? '' : 'login'; ?>">
 			<?php require ROOT_PATH . '/templates/' . ( ( $user->id ) ? 'dashboard' : 'login' )  . '.tpl'; ?>
+			<div id="footer" class="animated fadeInDown">eLearning App <i class="fa fa-graduation-cap"></i> Class of 2014</div>
 		</div>
 	</body>
 </html>
