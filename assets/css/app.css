@@ -73,6 +73,7 @@ i:hover > .inline_menu {
 	border-radius: 				5px;
 	-webkit-animation-duration:	.8s;
 	animation-duration:			.8s;
+	box-shadow: 				0 0 35px rgba(0, 0, 0, 0.1)
 }
 #wrapper > #login > #header {
 	padding: 					10px 15PX;
@@ -328,13 +329,13 @@ i:hover > .inline_menu {
 	}
 
 	#content .courses:first-child {
-		flex-basis: 				70px;
+		flex-basis: 				75px;
 		border-top-left-radius: 	80px;
 		border-bottom-left-radius: 	80px;
+		background-position: 		-5px -340px;
 	}
 	#content .courses:last-child {
 		flex-basis: 				70px;
-		background-position: 		-8px -340px;
 		border-top-right-radius: 	80px;
 		border-bottom-right-radius: 80px;
 	}
