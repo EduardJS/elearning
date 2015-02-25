@@ -253,7 +253,7 @@ i:hover > .inline_menu {
 	padding: 					0;
 }
 #lessons > #content > #available {
-	background: 				#A5C466;
+	background: 				#AECA77;
 	display:  					none;
 	width: 						-moz-min-content;
 	width: 						-webkit-min-content;
@@ -267,7 +267,7 @@ i:hover > .inline_menu {
 	padding: 					12px 20px;
 	font-size: 					.8em;
 	color:						#F1FFD7;
-	background:					#A5C466;
+	background:					#AECA77;
 }
 #lessons > #content > #available > a:last-child {
 	border-bottom-left-radius: 	inherit
@@ -289,11 +289,9 @@ i:hover > .inline_menu {
 	padding: 					10px 20px;
 }
 #lessons > #content > #container.error {
-	color: 						#FFE6E6;
-	background:  				#FF6347;
-}
-#lessons > #content > #container > h2 {
-	margin: 					0;
+	text-align: 				center;
+	color: 						#FF6347;
+	font-weight: 				bold;
 }
 
 
