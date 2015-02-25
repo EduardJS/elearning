@@ -92,4 +92,15 @@
 			DB::reload();
 		}
 
+		public function getDonePayments( $userID )
+		{
+			$payments = array();
+
+			$sql = DB::query( 'SELECT * FROM payments WHERE payerID = '. (int)$userID.' ORDER BY dateline DESC' );
+			while ( $payment = $sql->fetch_assoc() )
+				$payments[] = $payment;
+
+			return $payments;
+		}
+
 	}

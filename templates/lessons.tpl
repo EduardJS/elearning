@@ -27,12 +27,12 @@
 		<?php } ?>
 		<div id="container" class="<?php if ( !$lesson['id'] ) echo 'error'; ?>">
 			<?php
-				if ( count( $lesson ) )
+				if ( $lesson['id'] )
 					echo 'lectie incarcata !';
 				elseif ( count( $lessons ) )
-						echo '<h2><i class="fa fa-warning"></i> Selecteaza o lectie !</h2>';
+						echo 'Selecteaza o lectie !';
 					else
-						echo '<h2><i class="fa fa-warning"></i> Nu exista lectii in curs !</h2>';
+						echo 'Nu exista lectii in curs !';
 			?>
 		</div>
 

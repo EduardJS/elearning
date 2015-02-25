@@ -37,6 +37,7 @@ a {
 	font-family:  				'Open Sans', sans-serif;
 	background: 				inherit;
 	font-size: 					18px;
+	border-bottom-left-radius: 	5px;
 }
 .inline_menu > a {
 	min-width: 					200px;
@@ -48,6 +49,9 @@ a {
 .inline_menu > a:hover {
 	background:					#F1FFD7;
 	color:						#A5C466;
+}
+.inline_menu > a:last-child {
+	border-bottom-left-radius: 	5px;
 }
 .inline_menu > a > i {
 	margin-left: 				-10px;
@@ -160,6 +164,9 @@ i:hover > .inline_menu {
 	text-align: 				right;
 }
 #wrapper > #menu > #welcome > i {
+	margin-left: 				10px;
+	border-left: 				1px solid #E0EFC2;
+	color: 						#FF6347;
 	transition: 				.15s all ease;
 	padding: 					0 15px;
 	font-size: 					21px;
@@ -190,37 +197,43 @@ i:hover > .inline_menu {
 #content .courses {
 	display: 					block;
 	transition: 				.2s opacity ease,
-								.2s transform ease,
-								.4s border-radius ease;
+								.4s transform ease,
+								.4s border-radius ease,
+								.2s box-shadow ease;
 	opacity:  					.7;
 	width:						80px;
 	height: 					80px;
-	margin: 					10px 15px;
+	margin: 					10px;
 	border-radius: 				5px;
-	box-shadow: 				0 0 10px rgba(0, 0, 0, 0.2);
 	background: 				transparent url(../images/languages.png) no-repeat;
+}
+
+#content .courses.html {
+	box-shadow: 				0 0 10px #e78359;
+	background-position: 		0 0;
+}
+#content .courses.css {
+	box-shadow: 				0 0 10px #549dc3;
+	background-position: 		0 -85px;
+}
+#content .courses.php {
+	box-shadow: 				0 0 10px #97a7c1;
+	background-position: 		0 -170px;
+}
+#content .courses.mysql {
+	box-shadow: 				0 0 10px #98cac1;
+	background-position: 		0 -255px;
+}
+#content .courses.js {
+	box-shadow: 				0 0 10px #91c389;
+	background-position: 		0 -340px;
 }
 
 #content .courses:hover {
 	opacity:  					.9;
-	transform: 					scale( 1.07 );
+	box-shadow: 				none !important;
+	transform: 					scale( 1.1 );
 }
-#content .courses.html {
-	background-position: 		0 0;
-}
-#content .courses.css {
-	background-position: 		0 -85px;
-}
-#content .courses.php {
-	background-position: 		0 -170px;
-}
-#content .courses.mysql {
-	background-position: 		0 -255px;
-}
-#content .courses.js {
-	background-position: 		0 -340px;
-}
-
 
 /* BREADCRUMBS */
 #lessons {
@@ -302,8 +315,55 @@ i:hover > .inline_menu {
 
 /* 	SETTINGS  */
 #account {
-	padding: 					10px 20px;
+	width: 						100%;
 }
+#account > .group {
+	padding: 					20px;
+}
+#account > .group > .title {
+	margin: 					20px 0 5px;
+	font-size: 					30px;
+	font-weight: 				bold
+}
+#account > .group:first-child > .title {
+	margin-top: 				0;
+}
+#account > .group > .title > i {
+	background: 				#A5C466;
+	color: 						#F1FFD7;
+	margin-right: 				5px;
+	padding: 					5px;
+	border-radius: 				5px;
+}
+#account > .group > .fields {
+	margin-top: 				20px;
+	margin-left: 				20px;
+}
+#account > .group > .fields > input {
+	margin: 					0 0 10px;
+	transition: 				.2s background ease,
+								.2s color ease;
+	background: 				none;
+	border: 					1px solid currentColor;
+	color: 						inherit;
+	font-family:  				inherit;
+	font-size: 					14px;
+	border-radius: 				4px;
+	padding: 					5px 10px;
+}
+#account > .group > .fields > input[type="submit"] {
+	cursor: 					pointer;
+	background: 				#A5C466;
+	color: 						#F1FFD7;
+}
+#account > .group > .fields > input[type="submit"]:hover {
+	color: 						#A5C466;
+	background: 				#F1FFD7;
+}
+#account > .group > .fields  .error {
+	color: 						#FF6347;
+}
+
 
 /* 	FOOTER 	*/
 #wrapper > #footer {

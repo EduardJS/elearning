@@ -10,7 +10,8 @@
 		public static $con;
 		public static $config = array(
 			'cookie_name' => 'elearning_session',
-			'website_title' => 'eLearning App'
+			'website_title' => 'eLearning App',
+			'to_be_paid' => 650
 		);
 
 

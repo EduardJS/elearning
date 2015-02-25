@@ -4,7 +4,7 @@
 		Bun venit, <?php echo $user->first_name; ?> !
 		<i class="fa fa-bars">
 			<div class="inline_menu animated fadeIn">
-				<a href="/account"><i class="fa fa-fw fa-gear"></i> Setari</a>
+				<a href="/account"><i class="fa fa-fw fa-user"></i> Detalii cont</a>
 				<a href="/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a>
 			</div>
 		</i>
