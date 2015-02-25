@@ -103,7 +103,6 @@ i:hover > .inline_menu {
 	color: 						inherit;
 	font-size: 					inherit;
 	background: 				none;
-	font-family:  				inherit;
 	border:						1px solid currentColor;
 	border-radius: 				3px;
 	transition: 				.2s background ease,

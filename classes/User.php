@@ -48,7 +48,7 @@
 			if ( strlen( $username ) && strlen( $password ) )
 			{
 
-				if ( ctype_alnum( $username ) )
+				if ( ctype_alnum( str_replace( '.', '', $username ) ) )
 				{
 					$sql = DB::query( "SELECT id FROM users WHERE username = '" . $username . "' AND password = '" . md5( $password ) . "' LIMIT 1" );
 					if ( $sql->num_rows )
