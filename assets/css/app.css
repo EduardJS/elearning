@@ -17,8 +17,6 @@ body {
 	background: 				#9dbf68 url(../images/body-bg.jpg) no-repeat;
 	background-size: 			cover;
 	margin: 					0;
-	overflow-y: 				hidden;
-	min-width: 					280px;
 }
 
 a {
@@ -194,7 +192,7 @@ i:hover > .inline_menu {
 								.2s transform ease,
 								.4s border-radius ease;
 	opacity:  					.7;
-	min-width:					80px;
+	width:						80px;
 	height: 					80px;
 	margin: 					10px 15px;
 	border-radius: 				5px;
@@ -330,10 +328,13 @@ i:hover > .inline_menu {
 	}
 
 	#content .courses:first-child {
+		flex-basis: 				70px;
 		border-top-left-radius: 	80px;
 		border-bottom-left-radius: 	80px;
 	}
 	#content .courses:last-child {
+		flex-basis: 				70px;
+		background-position: 		-8px -340px;
 		border-top-right-radius: 	80px;
 		border-bottom-right-radius: 80px;
 	}
