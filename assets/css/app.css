@@ -201,6 +201,7 @@ i:hover > .inline_menu {
 	box-shadow: 				0 0 10px rgba(0, 0, 0, 0.2);
 	background: 				transparent url(../images/languages.png) no-repeat;
 }
+
 #content .courses:hover {
 	opacity:  					.9;
 	transform: 					scale( 1.07 );
@@ -327,8 +328,14 @@ i:hover > .inline_menu {
 	#wrapper > #content.choose {
 		border-radius: 				80px;
 	}
-	#wrapper > #content.choose .courses {
-		border-radius: 				50%;
+
+	#content .courses:first-child {
+		border-top-left-radius: 	80px;
+		border-bottom-left-radius: 	80px;
+	}
+	#content .courses:last-child {
+		border-top-right-radius: 	80px;
+		border-bottom-right-radius: 80px;
 	}
 
 	#lessons > #content,
