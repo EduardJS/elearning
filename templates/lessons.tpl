@@ -19,7 +19,7 @@
 					$i = 1;
 					foreach ( $lessons as $item )
 					{
-						printf ( '<a href="%s">%d. %s</a>' , '/courses/' . _COURSE . '/' . $item['url'], $i, $item['title'] );
+						printf ( '<a href="%s" class="%s">%d. %s</a>' , '/courses/' . _COURSE . '/' . $item['url'], ( $uri->segments[2] == $item['url'] ) ? 'current' : '', $i, $item['title'] );
 						++$i;
 					}
 				?>
@@ -28,7 +28,9 @@
 		<div id="container" class="<?php if ( !$lesson['id'] ) echo 'error'; ?>">
 			<?php
 				if ( $lesson['id'] )
-					echo 'lectie incarcata !';
+				{
+					print_r( $lesson );
+				}
 				elseif ( count( $lessons ) )
 						echo 'Selecteaza o lectie !';
 					else

@@ -294,13 +294,18 @@ i:hover > .inline_menu {
 	border-bottom-left-radius: 	0;
 }
 #lessons > #content > #available > a:hover {
-	background:					rgba(255,255,255,.2);
+	color: 						#F1FFD6;
+	background: 				#BDD592;
 }
 #lessons > #content > #available > a.current {
-	color:						#A5C466;
-	background:					#F1FFD7;
+	pointer-events: 			none;
+	border-bottom-left-radius: 	0;
+	color: 						#A5C465;
+	background: 				#F1FFD6;
+	font-weight: 				bold;
 }
 #lessons > #content > #container {
+	min-height: 				200px;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 	5px;
 	flex: 						1 0 0;

@@ -35,7 +35,7 @@
 		{
 			if ( ctype_alnum( str_replace( '-', '', $url ) ) )
 			{
-				$lesson = DB::query( "SELECT id FROM lessons WHERE url = '". $url ."' AND course = '" . $course . "' LIMIT 1");
+				$lesson = DB::query( "SELECT * FROM lessons WHERE url = '". $url ."' AND course = '" . $course . "' LIMIT 1");
 
 				if ( $lesson->num_rows )
 					return $lesson->fetch_assoc();
