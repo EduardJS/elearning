@@ -19,8 +19,10 @@
 	// procesare request login
 	if ( $uri->segments[0] == 'login' )
 		$user->checkLogin( $_POST['username'], $_POST['password'] );
-	elseif ( $uri->segments[0] == 'logout' )
-		$user->destroySession( );
+	elseif ( $uri->segments[0] == 'logout' ){
+		$user->destroySession( $user->id );
+		DB::reload();
+	}
 
 ?>
 <!DOCTYPE html>

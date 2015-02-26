@@ -320,9 +320,12 @@ i:hover > .inline_menu {
 #account > .group {
 	padding: 					20px;
 }
+#account > .group .error {
+	color: 						#FF6347;
+}
 #account > .group > .title {
 	margin: 					20px 0 5px;
-	font-size: 					30px;
+	font-size: 					20px;
 	font-weight: 				bold
 }
 #account > .group:first-child > .title {
@@ -335,9 +338,16 @@ i:hover > .inline_menu {
 	padding: 					5px;
 	border-radius: 				5px;
 }
+#account > .group > .title.error > i {
+	background: 				#FF6347;
+}
 #account > .group > .fields {
 	margin-top: 				20px;
 	margin-left: 				20px;
+}
+#account > .group > .fields.disabled {
+	opacity:  					.3;
+	pointer-events: 			none;
 }
 #account > .group > .fields > input {
 	margin: 					0 0 10px;
@@ -360,8 +370,16 @@ i:hover > .inline_menu {
 	color: 						#A5C466;
 	background: 				#F1FFD7;
 }
-#account > .group > .fields  .error {
-	color: 						#FF6347;
+#account > .group > .fields .error.padded {
+	padding: 					0 0 10px;
+}
+#account > .group > .fields .error.padded > i {
+	margin-right: 				5px;
+	border-radius: 				3px;
+	background: 				#FF6347;
+	color: 						#F1FFD7;
+	padding: 					4px;
+	font-size: 					15px;
 }
 
 
@@ -411,5 +429,9 @@ i:hover > .inline_menu {
 	#lessons > #content > #available {
 		display:  					flex;
 		flex-direction: 			column;
+	}
+
+	#account > .group > .title {
+		font-size: 					30px;
 	}
 }

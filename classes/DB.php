@@ -4,7 +4,7 @@
 		function __construct( )
 		{
 			if ( !self::$con )
-				self::$con = new MySQLi( 'localhost', 'root', 'password', 'elearning' );
+				self::$con = new MySQLi( 'localhost', 'root', 'dulumanedy17#', 'elearning' );
 		}
 
 		public static $con;

@@ -1,10 +1,10 @@
 <div id="login" class="animated fadeInDown">
-	<div id="header" class="<?php echo ( $user->auth_error ) ? 'error' : ''; ?>">
+	<div id="header" class="<?php echo ( $user->error ) ? 'error' : ''; ?>">
 		<?php
-			if ( $user->auth_error )
+			if ( $user->error )
 			{
 				echo '<i class="fa fa-warning"></i> ';
-				echo $user->auth_error;
+				echo $user->error;
 			} else
 				echo  '<i class="fa fa-graduation-cap"></i> eLearning Login';
 		?>

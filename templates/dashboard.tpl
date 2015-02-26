@@ -1,3 +1,7 @@
+<?php
+	if ( $user->needsPassChange && $uri->segments[1] != 'changePassword' && $uri->segments[1] != 'mustChange' )
+		DB::reload('/account/mustChange')
+?>
 <div id="menu">
 	<a id="logo" href="/"><i class="fa fa-graduation-cap"></i> <?php echo DB::$config['website_title']; ?></a>
 	<div id="welcome">
