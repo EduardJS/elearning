@@ -6,7 +6,7 @@
 	<div id="replies">
 		{{ # replies:index }}
 			<div class="reply {{ user == me.id ? 'self' : '' }} animated {{ index < replies_limit ? 'fadeInDown' : 'fadeOutDown' }}">
-				<div class="avatar" style="background-image: url(/assets/images/avatars/{{ user }}.jpg);" >{{ friends[ user ].name }}</div>
+				<div class="avatar" data-tooltip="{{ friends[ user ] }}" style="background-image: url(/assets/images/avatars/{{ user }}.jpg);" >{{ friends[ user ].name }}</div>
 				<div class="message">{{ message }}</div>
 			</div>
 		{{ / }}

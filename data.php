@@ -22,7 +22,7 @@
 	$friends = array();
 	$sql = DB::query('SELECT id, first_name, last_name FROM users');
 	while( $friend = $sql->fetch_assoc() )
-		$friends[ $friend['id'] ] = $friend;
+		$friends[ $friend['id'] ] = $friend['first_name']. ' ' .$friend['last_name'];
 
 	$templates = array();
 	$templates['chat'] = file_get_contents( ROOT_PATH . '/templates/chat.tpl' );

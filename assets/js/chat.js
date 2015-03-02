@@ -117,8 +117,6 @@ var chat =
 		var replies = chatTPL.get('replies');
 		replies.unshift( data );
 
-		console.log ( replies.length , chat.replies_limit );
-
 		if ( replies.length > chat.replies_limit + 1 )
 			replies.pop();
 
