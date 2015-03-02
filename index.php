@@ -44,7 +44,6 @@
 	<body>
 		<div id="wrapper" class="<?php echo ( $user->id ) ? '' : 'login'; ?>">
 			<?php require ROOT_PATH . '/templates/' . ( ( $user->id ) ? 'dashboard' : 'login' )  . '.tpl'; ?>
-			<div id="footer" class="animated fadeInDown">eLearning App <i class="fa fa-graduation-cap"></i> Class of 2014</div>
 		</div>
 	</body>
 </html>

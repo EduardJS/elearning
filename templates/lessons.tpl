@@ -14,7 +14,7 @@
 	</div>
 	<div id="content">
 		<?php if ( count( $lessons ) ) { ?>
-			<div id="available" class="animated fadeIn">
+			<div id="available" class="animated fadeIn <?php if ( $lesson['id'] ) echo 'selected'; ?>">
 				<?php
 					$i = 1;
 					foreach ( $lessons as $item )

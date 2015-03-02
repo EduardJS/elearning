@@ -3,7 +3,6 @@
 
 * {
 	outline: 					none;
-
 	-webkit-box-sizing: 		border-box;
 	-moz-box-sizing: 			border-box;
 	box-sizing: 				border-box;
@@ -70,8 +69,8 @@ i:hover > .inline_menu {
 
 #wrapper > #login {
 	overflow: 					hidden;
-	width: 						500px;
-	margin: 					200px auto 0;
+	max-width: 					500px;
+	margin: 					50px auto 0;
 	background: 				#F1FFD7;
 	color: 						#A5C466;
 	border-radius: 				5px;
@@ -80,9 +79,9 @@ i:hover > .inline_menu {
 	box-shadow: 				0 0 35px rgba(0, 0, 0, 0.1)
 }
 #wrapper > #login > #header {
-	padding: 					10px 15PX;
+	padding: 					10px 15px;
 	display: 	 				block;
-	font-size: 					22px;
+	font-size: 					16px;
 }
 #wrapper > #login > #header.error {
 	background:  				#FF6347;
@@ -99,14 +98,18 @@ i:hover > .inline_menu {
 }
 #wrapper > #login > #connect > form {
 	display: 					flex;
+	flex-direction: 			column;
 
 }
 #wrapper > #login > #connect > form > input {
-	flex: 						1 0 0;
-	margin: 					5px;
+	display: 					block;
+	width: 						100%;
+	margin: 					5px 0;
 	padding: 					5px 10px;
 	color: 						inherit;
+	font-family:  				inherit;
 	font-size: 					inherit;
+	height: 					35px;
 	background: 				none;
 	border:						1px solid currentColor;
 	border-radius: 				3px;
@@ -114,7 +117,6 @@ i:hover > .inline_menu {
 								.2s color ease;
 }
 #wrapper > #login > #connect > form > input[type="submit"] {
-	max-width: 					70px;
 	cursor: 					pointer;
 	background: 				#A5C466;
 	color: 						#F1FFD7;
@@ -160,7 +162,7 @@ i:hover > .inline_menu {
 }
 
 #wrapper > #menu > #welcome {
-	flex: 						1 0 0;
+	flex: 						1 0 auto;
 	text-align: 				right;
 }
 #wrapper > #menu > #welcome > i {
@@ -178,10 +180,26 @@ i:hover > .inline_menu {
 	background:					#A5C466;
 }
 
+
+/* 	HEADING 	*/
+#wrapper > #heading {
+	text-align: 				center;
+	font-size: 					20px;
+	margin-top: 				60px;
+	color: 						#F1FFD7;
+	-webkit-animation-delay: 	.5s;
+	animation-delay: 			.5s;
+}
+#wrapper > #heading > i {
+	margin: 					0 10px;
+	vertical-align: 			bottom;
+	font-size: 					24px;
+}
+
 /* CONTENT */
 
 #wrapper > #content {
-	margin-top: 				70px;
+	margin-top: 				20px;
 	border-radius: 				5px;
 	transition: 				.4s border-radius ease;
 	justify-content: 			space-between;
@@ -268,16 +286,23 @@ i:hover > .inline_menu {
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 	5px;
 	display: 					flex;
+	flex-direction: 			column;
 	padding: 					0;
 }
 #lessons > #content > #available {
 	background: 				#AECA77;
-	display:  					none;
-	width: 						-moz-min-content;
-	width: 						-webkit-min-content;
-	width: 						min-content;
+	display:  					flex;
+	flex: 						1 0 auto;
+	flex-direction: 			column;
 	white-space: 				nowrap;
+
+
+	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 	5px;
+
+}
+#lessons > #content > #available.selected {
+	display:  					none;
 }
 #lessons > #content > #available > a {
 	transition: 				.2s color ease,
@@ -285,33 +310,27 @@ i:hover > .inline_menu {
 	padding: 					12px 20px;
 	font-size: 					.8em;
 	color:						#F1FFD7;
-	background:					#AECA77;
 }
 #lessons > #content > #available > a:last-child {
-	border-bottom-left-radius: 	inherit
+	border-bottom-left-radius:  inherit;
 }
-#lessons > #content > #available > a:first-child {
-	border-bottom-left-radius: 	0;
+#lessons > #content > #available > a.current {
+	pointer-events: 			none;
+	color: 						#A5C465;
+	background: 				#F1FFD6;
+	font-weight: 				bold;
 }
 #lessons > #content > #available > a:hover {
 	color: 						#F1FFD6;
 	background: 				#BDD592;
 }
-#lessons > #content > #available > a.current {
-	pointer-events: 			none;
-	border-bottom-left-radius: 	0;
-	color: 						#A5C465;
-	background: 				#F1FFD6;
-	font-weight: 				bold;
-}
 #lessons > #content > #container {
-	min-height: 				200px;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 	5px;
-	flex: 						1 0 0;
 	padding: 					10px 20px;
 }
 #lessons > #content > #container.error {
+	display:  					none;
 	text-align: 				center;
 	color: 						#FF6347;
 	font-weight: 				bold;
@@ -387,22 +406,22 @@ i:hover > .inline_menu {
 	font-size: 					15px;
 }
 
-
-/* 	FOOTER 	*/
-#wrapper > #footer {
-	text-align: 				center;
-	font-size: 					14px;
-	margin-top: 				10px;
-	color: 						#F1FFD7;
-	-webkit-animation-delay: 	.5s;
-	animation-delay: 			.5s;
-}
-#wrapper > #footer > i {
-	margin: 					0 10px;
-	font-size: 					16px;
-}
-
 @media only screen and ( min-width: 650px ) {
+
+	#wrapper > #login > #header {
+		font-size: 					22px;
+	}
+
+	#wrapper > #login {
+		margin: 					200px auto 0;
+	}
+
+	#wrapper > #login > #connect > form > input[type="submit"] {
+		max-width: 					150px;
+		margin: 					5px 0 0 auto;
+	}
+
+
 	#wrapper > #menu > #logo {
 		color: 				 		inherit;
 	}
@@ -411,32 +430,140 @@ i:hover > .inline_menu {
 		border-radius: 				80px;
 	}
 
-	#content .courses:first-child {
+	#wrapper > #content .courses:first-child {
 		flex-basis: 				70px;
 		border-top-left-radius: 	80px;
 		border-bottom-left-radius: 	80px;
 	}
-	#content .courses:last-child {
+	#wrapper > #content .courses:last-child {
 		flex-basis: 				75px;
 		border-top-right-radius: 	80px;
 		border-bottom-right-radius: 80px;
 		background-position: 		-5px -340px;
 	}
-
 	#lessons > #content,
 	#lessons > #content > #container {
 		border-bottom-left-radius: 	0;
 	}
+
+	#lessons > #content {
+		flex-direction: 			row;
+	}
+
 	#lessons > #breadcrumbs {
 		line-height:  				40px;
 		font-size: 					24px;
 	}
 	#lessons > #content > #available {
+		flex: 						1 0 240px;
+		max-width:  				240px;
+		width: 						-moz-min-content;
+		width: 						-webkit-min-content;
+		width: 						min-content;
+		border-bottom-right-radius:	0;
+	}
+	#lessons > #content > #available.selected {
 		display:  					flex;
-		flex-direction: 			column;
+	}
+	#lessons > #content > #container.error {
+		display:  					block;
 	}
 
 	#account > .group > .title {
 		font-size: 					30px;
 	}
+}
+
+#wrapper > #chat {
+	width: 						80%;
+	margin: 					0 auto;
+	-webkit-animation-delay:	.5s;
+	animation-delay:			.5s;
+}
+#wrapper > #chat > #actions {
+	display:  					flex;
+}
+#wrapper > #chat > #actions > input {
+	flex-grow: 					1;
+	border: 					0;
+	resize: 					none;
+	border-radius: 				0;
+	background: 				#F1FFD6;
+	color: 						#9CBA5A;
+	font-family: 				inherit;
+	font-size: 					inherit;
+	padding: 					10px;
+	border-bottom-left-radius: 	5px;
+	box-shadow: 				-2px 2px 10px rgba(113, 138, 63, 0.3) inset;
+}
+#wrapper > #chat > #actions > button {
+	background: 				#AECA77;
+	color: 						#F1FFD6;
+	padding: 					0 15px;
+	font-family: 				inherit;
+	font-size: 					1.4em;
+	cursor: 					pointer;
+	border: 					0;
+	border-radius: 				0;
+	border-bottom-right-radius:	5px;
+}
+#wrapper > #chat > #actions > button:hover {
+	background: 				#B8D188;
+}
+#wrapper > #chat > #replies {
+	display:  					flex;
+	flex-direction: 			column;
+	margin-top: 				25px;
+	position: 					relative;
+}
+#wrapper > #chat > #replies > .reply {
+	-webkit-animation-duration: .2s;
+	animation-duration: 		.2s;
+	display:  					flex;
+	align-items: 				flex-start;
+	margin-top: 				10px;
+}
+#wrapper > #chat > #replies > .reply:first-child {
+	margin-top: 				0;
+}
+#wrapper > #chat > #replies > .reply.self {
+	flex-direction: 			row-reverse;
+}
+#wrapper > #chat > #replies > .reply > .avatar {
+	background-repeat:  		no-repeat;
+	background-position:  		center center;
+	background-size: 			cover;
+	flex: 						0 0 30px;
+	height: 					30px;
+	border-radius: 				50%;
+	margin-right: 				10px;
+}
+#wrapper > #chat > #replies > .reply > .message {
+	word-wrap: 					break-word;
+	color: 						#F1FFD5;
+	background: 				rgba(241, 255, 214, 0.19);
+	width: 						50%;
+	padding: 					4px 10px;
+	border-radius: 				5px;
+	position: 					relative;
+}
+#wrapper > #chat > #replies > .reply > .message:after {
+	right: 						100%;
+	top: 						9px;
+	border: 					6px solid transparent;
+	content: 					" ";
+	height: 					0;
+	width: 						0;
+	position: 					absolute;
+	border-color: 				transparent;
+	border-right-color: 		rgba(241, 255, 214, 0.19);
+}
+#wrapper > #chat > #replies > .reply.self > .avatar {
+	margin-left: 				10px;
+}
+#wrapper > #chat > #replies > .reply.self > .message:after {
+	right: 						auto;
+	left: 						100%;
+	border-color: 				transparent;
+	border-left-color: 			rgba(241, 255, 214, 0.19);
 }

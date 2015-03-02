@@ -4,16 +4,18 @@
 		function __construct( )
 		{
 			if ( !self::$con )
-				self::$con = new MySQLi( 'localhost', 'root', 'dulumanedy17#', 'elearning' );
+				self::$con = new MySQLi( 'localhost', 'root', 'password', 'elearning' );
 		}
 
 		public static $con;
 		public static $config = array(
 			'cookie_name' => 'elearning_session',
 			'website_title' => 'eLearning App',
-			'to_be_paid' => 650
+			'pusher_app_id' => '109308',
+			'pusher_app_key' => 'a906e3112e21c93de22b',
+			'pusher_app_secret' => '090f410197850b16797e',
+			'to_be_paid' => 670
 		);
-
 
 		public static function query( $statement )
 		{

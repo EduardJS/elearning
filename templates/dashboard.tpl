@@ -14,6 +14,9 @@
 		</i>
 	</div>
 </div>
+
+<div id="heading" class="animated fadeInUp"><?php echo DB::$config['website_title']; ?> <i class="fa fa-graduation-cap"></i> Class of 2014</div>
+
 <div id="content" class="animated fadeInDown <?php if ( count($uri->segments) == 1 && $uri->segments[0] == 'courses' ) echo 'choose'; ?>">
 	<?php
 
@@ -25,3 +28,12 @@
 			DB::reload( '/courses' );
 	?>
 </div>
+
+<script type="text/javascript" src="https://js.pusher.com/2.2/pusher.min.js"></script>
+<script type="text/javascript" src="/assets/js/ractive.js"></script>
+<script type="text/javascript" src="/data.php"></script>
+<script type="text/javascript" src="/assets/js/chat.js"></script>
+<script type="text/javascript">
+	if ( chat )
+		chat.init();
+</script>
