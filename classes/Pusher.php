@@ -1,180 +1,177 @@
 <?php
 
-	class Pusher
-	{
-		private $settings = array ();
+    class Pusher
+    {
+        private $settings = [];
 
-		public function __construct( $auth_key, $secret, $app_id  )
-		{
+        public function __construct($auth_key, $secret, $app_id)
+        {
+            $this->settings['app_id'] = $app_id;
+            $this->settings['auth_key'] = $auth_key;
+            $this->settings['secret'] = $secret;
+        }
 
-			$this->settings['app_id'] 	= $app_id;
-			$this->settings['auth_key'] = $auth_key;
-			$this->settings['secret'] 	= $secret;
+        private function create_curl($url, $request_method = 'GET', $query_params = [])
+        {
+            $url = sprintf('/apps/%s/%s', $this->settings['app_id'], $url);
 
-		}
+            $signed_query = self::build_auth_query_string(
+                $this->settings['auth_key'],
+                $this->settings['secret'],
+                $request_method,
+                $url,
+                $query_params
+            );
 
-		private function create_curl( $url, $request_method = 'GET', $query_params = array() )
-		{
+            $full_url = sprintf('http://api.pusherapp.com%s?%s', $url, $signed_query);
 
-			$url = sprintf( '/apps/%s/%s' , $this->settings['app_id'], $url );
+            $ch = curl_init();
 
-			$signed_query = self::build_auth_query_string(
-				$this->settings['auth_key'],
-				$this->settings['secret'],
-				$request_method,
-				$url,
-				$query_params
-			);
+            curl_setopt($ch, CURLOPT_URL, $full_url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
-			$full_url = sprintf( 'http://api.pusherapp.com%s?%s' , $url, $signed_query );
+            return $ch;
+        }
 
-			$ch = curl_init();
+        private function exec_curl($ch)
+        {
+            $response = [];
 
-			curl_setopt( $ch, CURLOPT_URL, $full_url );
-			curl_setopt( $ch, CURLOPT_HTTPHEADER, array ( "Content-Type: application/json" ) );
-			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-			curl_setopt( $ch, CURLOPT_TIMEOUT, 30 );
+            $response['body'] = curl_exec($ch);
+            $response['status'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-			return $ch;
-		}
+            curl_close($ch);
 
-		private function exec_curl( $ch ) {
-			$response = array();
+            return $response;
+        }
 
-			$response[ 'body' ] = curl_exec( $ch );
-			$response[ 'status' ] = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+        public static function build_auth_query_string($auth_key, $auth_secret, $request_method, $request_path, $query_params = [], $auth_version = '1.0', $auth_timestamp = null)
+        {
+            $params = [];
+            $params['auth_key'] = $auth_key;
+            $params['auth_timestamp'] = (is_null($auth_timestamp) ? time() : $auth_timestamp);
+            $params['auth_version'] = $auth_version;
 
-			curl_close( $ch );
+            $params = array_merge($params, $query_params);
+            ksort($params);
 
-			return $response;
-		}
+            $string_to_sign = "$request_method\n".$request_path."\n".self::array_implode('=', '&', $params);
 
-		public static function build_auth_query_string( $auth_key, $auth_secret, $request_method, $request_path, $query_params = array(), $auth_version = '1.0', $auth_timestamp = null )
-		{
-			$params = array();
-			$params['auth_key'] = $auth_key;
-			$params['auth_timestamp'] = (is_null($auth_timestamp)?time() : $auth_timestamp);
-			$params['auth_version'] = $auth_version;
+            $auth_signature = hash_hmac('sha256', $string_to_sign, $auth_secret, false);
 
-			$params = array_merge($params, $query_params);
-			ksort($params);
+            $params['auth_signature'] = $auth_signature;
+            ksort($params);
 
-			$string_to_sign = "$request_method\n" . $request_path . "\n" . self::array_implode( '=', '&', $params );
+            $auth_query_string = self::array_implode('=', '&', $params);
 
-			$auth_signature = hash_hmac( 'sha256', $string_to_sign, $auth_secret, false );
+            return $auth_query_string;
+        }
 
-			$params['auth_signature'] = $auth_signature;
-			ksort($params);
+        public static function array_implode($glue, $separator, $array)
+        {
+            if (!is_array($array)) {
+                return $array;
+            }
 
-			$auth_query_string = self::array_implode( '=', '&', $params );
+            $string = [];
 
-			return $auth_query_string;
-		}
+            foreach ($array as $key => $val) {
+                if (is_array($val)) {
+                    $val = implode(',', $val);
+                }
+                $string[] = "{$key}{$glue}{$val}";
+            }
 
-		public static function array_implode( $glue, $separator, $array ) {
+            return implode($separator, $string);
+        }
 
-			if ( ! is_array( $array ) ) return $array;
+        public function trigger($channels, $event, $data, $socket_id = null, $already_encoded = false)
+        {
+            if (is_string($channels) === true) {
+                $channels = [$channels];
+            }
 
-			$string = array();
+            $query_params = [];
 
-			foreach ( $array as $key => $val ) {
-					if ( is_array( $val ) )
-							$val = implode( ',', $val );
-					$string[] = "{$key}{$glue}{$val}";
-			}
+            $data_encoded = $already_encoded ? $data : json_encode($data);
 
-			return implode( $separator, $string );
-		}
+            $post_params = [];
+            $post_params['name'] = $event;
+            $post_params['data'] = $data_encoded;
+            $post_params['channels'] = $channels;
 
-		public function trigger( $channels, $event, $data, $socket_id = null, $already_encoded = false )
-		{
-			if( is_string( $channels ) === true )
-				$channels = array( $channels );
+            if ($socket_id !== null) {
+                $post_params['socket_id'] = $socket_id;
+            }
 
-			$query_params = array();
+            $post_value = json_encode($post_params);
 
-			$data_encoded = $already_encoded ? $data : json_encode( $data );
+            $query_params['body_md5'] = md5($post_value);
 
-			$post_params = array();
-			$post_params[ 'name' ] = $event;
-			$post_params[ 'data' ] = $data_encoded;
-			$post_params[ 'channels' ] = $channels;
+            $ch = $this->create_curl('events', 'POST', $query_params);
 
-			if ( $socket_id !== null )
-				$post_params[ 'socket_id' ] = $socket_id;
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_value);
 
-			$post_value = json_encode( $post_params );
+            $response = $this->exec_curl($ch);
 
-			$query_params['body_md5'] = md5( $post_value );
+            return ($response['status'] == 200) ? true : false;
+        }
 
-			$ch = $this->create_curl( 'events', 'POST', $query_params );
+        public function get_channel_info($channel, $params = [])
+        {
+            $response = $this->get('channels/'.$channel, $params);
 
-			curl_setopt( $ch, CURLOPT_POST, 1 );
-			curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_value );
+            return ($response['status'] == 200) ? json_decode($response['body'], true) : false;
+        }
 
-			$response = $this->exec_curl( $ch );
+        public function get_channels($params = [])
+        {
+            $response = $this->get('channels', $params);
 
-			return ( $response[ 'status' ] == 200 ) ? true : false;
+            if ($response['status'] == 200) {
+                $response = json_decode($response['body'], true);
 
-		}
+                return $response['channels'];
+            } else {
+                return false;
+            }
+        }
 
-		public function get_channel_info( $channel, $params = array() )
-		{
-			$response = $this->get( 'channels/' . $channel, $params );
+        public function get($path, $params = [])
+        {
+            $ch = $this->create_curl($path, 'GET', $params);
 
-			return ( $response[ 'status' ] == 200 ) ? json_decode( $response[ 'body' ] , true ) : false;
+            return $this->exec_curl($ch);
+        }
 
-		}
+        public function socket_auth($channel, $socket_id, $custom_data = false)
+        {
+            if ($custom_data == true) {
+                $signature = hash_hmac('sha256', $socket_id.':'.$channel.':'.$custom_data, $this->settings['secret'], false);
+            } else {
+                $signature = hash_hmac('sha256', $socket_id.':'.$channel, $this->settings['secret'], false);
+            }
 
-		public function get_channels($params = array())
-		{
-			$response = $this->get( 'channels', $params );
+            $signature = ['auth' => $this->settings['auth_key'].':'.$signature];
 
-			if ( $response[ 'status' ] == 200 )
-			{
-				$response = json_decode( $response[ 'body' ] , true );
-				return $response['channels'];
-			}
-			else
-				return false;
+            if ($custom_data) {
+                $signature['channel_data'] = $custom_data;
+            }
 
-		}
+            return json_encode($signature);
+        }
 
-		public function get( $path, $params = array() )
-		{
+        public function presence_auth($channel, $socket_id, $user_id, $user_info = false)
+        {
+            $user_data = ['user_id' => $user_id];
 
-			$ch = $this->create_curl( $path, 'GET', $params );
-			return $this->exec_curl( $ch );
+            if ($user_info == true) {
+                $user_data['user_info'] = $user_info;
+            }
 
-		}
-
-		public function socket_auth( $channel, $socket_id, $custom_data = false )
-		{
-
-			if ( $custom_data == true )
-				$signature = hash_hmac( 'sha256', $socket_id . ':' . $channel . ':' . $custom_data, $this->settings['secret'], false );
-			else
-				$signature = hash_hmac( 'sha256', $socket_id . ':' . $channel, $this->settings['secret'], false );
-
-			$signature = array ( 'auth' => $this->settings['auth_key'] . ':' . $signature );
-
-			if ( $custom_data )
-				$signature['channel_data'] = $custom_data;
-
-			return json_encode( $signature );
-
-		}
-
-		public function presence_auth( $channel, $socket_id, $user_id, $user_info = false )
-		{
-
-			$user_data = array( 'user_id' => $user_id );
-
-			if ( $user_info == true )
-				$user_data['user_info'] = $user_info;
-
-			return $this->socket_auth( $channel, $socket_id, json_encode( $user_data ) );
-
-		}
-
-	}
+            return $this->socket_auth($channel, $socket_id, json_encode($user_data));
+        }
+    }
