@@ -1,28 +1,28 @@
 <?php
-	setlocale(LC_ALL, 'en_US.UTF8');
-	error_reporting( E_ALL & ~E_NOTICE );
+    setlocale(LC_ALL, 'en_US.UTF8');
+    error_reporting(E_ALL & ~E_NOTICE);
 
-	// cale folder aplicatie
-	define( 'ROOT_PATH', __DIR__ );
-	define( 'SCRIPT_PATH', $_SERVER['SCRIPT_NAME'] );
+    // cale folder aplicatie
+    define('ROOT_PATH', __DIR__);
+    define('SCRIPT_PATH', $_SERVER['SCRIPT_NAME']);
 
-	// functie autoload clase
-	function __autoload( $className )
-	{
-		require ROOT_PATH . '/classes/' . $className . '.php';
-	}
+    // functie autoload clase
+    function __autoload($className)
+    {
+        require ROOT_PATH.'/classes/'.$className.'.php';
+    }
 
-	// initializam userul
-	$user = new User;
-	$uri = new URI;
+    // initializam userul
+    $user = new User();
+    $uri = new URI();
 
-	// procesare request login
-	if ( $uri->segments[0] == 'login' )
-		$user->checkLogin( $_POST['username'], $_POST['password'] );
-	elseif ( $uri->segments[0] == 'logout' ){
-		$user->destroySession( $user->id );
-		DB::reload();
-	}
+    // procesare request login
+    if ($uri->segments[0] == 'login') {
+        $user->checkLogin($_POST['username'], $_POST['password']);
+    } elseif ($uri->segments[0] == 'logout') {
+        $user->destroySession($user->id);
+        DB::reload();
+    }
 
 ?>
 <!DOCTYPE html>
@@ -42,8 +42,8 @@
 
 	</head>
 	<body>
-		<div id="wrapper" class="<?php echo ( $user->id ) ? '' : 'login'; ?>">
-			<?php require ROOT_PATH . '/templates/' . ( ( $user->id ) ? 'dashboard' : 'login' )  . '.tpl'; ?>
+		<div id="wrapper" class="<?php echo ($user->id) ? '' : 'login'; ?>">
+			<?php require ROOT_PATH.'/templates/'.(($user->id) ? 'dashboard' : 'login').'.tpl'; ?>
 		</div>
 	</body>
 </html>

@@ -1,62 +1,60 @@
 <?php
-	class DB {
+    class DB
+    {
+        public function __construct()
+        {
+            if (!self::$con) {
+                self::$con = new MySQLi('localhost', 'root', 'password', 'elearning');
+            }
+        }
 
-		function __construct( )
-		{
-			if ( !self::$con )
-				self::$con = new MySQLi( 'localhost', 'root', 'password', 'elearning' );
-		}
+        public static $con;
+        public static $config = [
+            'cookie_name'       => 'elearning_session',
+            'website_title'     => 'eLearning App',
+            'pusher_app_id'     => '109308',
+            'pusher_app_key'    => 'a906e3112e21c93de22b',
+            'pusher_app_secret' => '090f410197850b16797e',
+            'to_be_paid'        => 670,
+        ];
 
-		public static $con;
-		public static $config = array(
-			'cookie_name' => 'elearning_session',
-			'website_title' => 'eLearning App',
-			'pusher_app_id' => '109308',
-			'pusher_app_key' => 'a906e3112e21c93de22b',
-			'pusher_app_secret' => '090f410197850b16797e',
-			'to_be_paid' => 670
-		);
+        public static function query($statement)
+        {
+            $result = self::$con->query($statement);
 
-		public static function query( $statement )
-		{
+            self::$con->error && printf('error[%s]', $statement);
 
-			$result = self::$con->query( $statement );
+            return $result;
+        }
 
-			self::$con->error && printf( 'error[%s]' , $statement );
+        public static function insertID()
+        {
+            return self::$con->insertID;
+        }
 
-			return $result;
+        public static function random($length)
+        {
+            $result = '';
+            $chr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
 
-		}
+            for ($i = 0; $i < $length; ++$i) {
+                $result .= $chr[mt_rand(0, strlen($chr) - 1)];
+            }
 
-		public static function insertID( )
-		{
-			return self::$con->insertID;
-		}
+            return $result;
+        }
 
-		public static function random( $length )
-		{
-			$result = '';
-			$chr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+        public static function reload($location = false)
+        {
+            // close connection if previously opened
+            if (self::$con) {
+                self::$con->close();
+            }
 
-			for ( $i = 0; $i < $length; ++$i )
-				$result .= $chr[ mt_rand( 0, strlen( $chr ) - 1 ) ];
+            if (!$location) {
+                $location = '/';
+            }
 
-			return $result;
-
-		}
-
-		public static function reload( $location = false )
-		{
-			// close connection if previously opened
-			if ( self::$con )
-				self::$con->close();
-
-			if ( !$location )
-				$location = '/';
-
-			die( header( 'Location: ' . $location ) );
-
-
-		}
-
-	}
+            die(header('Location: '.$location));
+        }
+    }
